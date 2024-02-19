@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  web:
+    build: block_validator
+    ports:
+      - "127.0.0.1:5015:5000"
+    volumes:
+      - .:/block_validator
+    environment:
+      - QUART_ENV=development
