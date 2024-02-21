@@ -1,26 +1,50 @@
 import nano_lib_py as nl
 
 
+class NanoBlockDifficulty:
+
+    epoch_1 = ""
+    epoch_2_base = ""
+    epoch_2_receive = ""
+
+
+class LiveDifficulty(NanoBlockDifficulty):
+
+    epoch_1 = "ffffffc000000000"
+    epoch_2_base = "fffffff800000000"
+    epoch_2_receive = "fffffe0000000000"
+
+
+class BetaDifficulty(NanoBlockDifficulty):
+
+    epoch_1 = "fffff00000000000"
+    epoch_2_base = "fffff00000000000"
+    epoch_2_receive = "ffffe00000000000"
+
+
 class BlockValidator:
-    def __init__(self, block: nl.Block, base_difficulty, receive_difficulty):
+    def __init__(self, block: nl.Block, difficulty: NanoBlockDifficulty):
+        self.difficulty = difficulty
         self.block = block
-        self.base_difficulty = base_difficulty
-        self.receive_difficulty = receive_difficulty
 
     def validate(self):
 
-        base = self.base_difficulty
-        receive = self.receive_difficulty
+        base = self.difficulty.epoch_2_base
+        receive = self.difficulty.epoch_2_receive
+        epoch1 = self.difficulty.epoch_1
 
         return {
             "is_signature_valid": self._validate_signature(),
             "is_work_valid_base": self._validate_work(base),
             "is_work_valid_receive": self._validate_work(receive),
+            "is_work_valid_epoch1": self._validate_work(epoch1),
             "difficulty": self._get_difficulty(),
-            "base_difficulty": self.base_difficulty,
-            "receive_difficulty": self.receive_difficulty,
+            "epoch1_difficulty": epoch1,
+            "base_difficulty": base,
+            "receive_difficulty": receive,
             "base_multiplier": self._calculate_multiplier(base),
-            "receive_multiplier": self._calculate_multiplier(receive)
+            "receive_multiplier": self._calculate_multiplier(receive),
+            "epoch1_multiplier": self._calculate_multiplier(epoch1)
         }
 
     def _get_difficulty(self, as_hex=True):
@@ -47,18 +71,14 @@ class BlockValidator:
 
 class BetaBlockValidator(BlockValidator):
     def __init__(self, block: nl.Block):
-        self.block = block
-        self.base_difficulty = "fffff00000000000"
-        self.receive_difficulty = "ffffe00000000000"
-        super().__init__(block, self.base_difficulty, self.receive_difficulty)
+        diff = BetaDifficulty
+        super().__init__(block, diff)
 
 
 class LiveBlockValidator(BlockValidator):
     def __init__(self, block: nl.Block):
-        self.block = block
-        self.base_difficulty = "fffffff800000000"
-        self.receive_difficulty = "fffffe0000000000"
-        super().__init__(block, self.base_difficulty, self.receive_difficulty)
+        diff = LiveDifficulty
+        super().__init__(block, diff)
 
 
 def nl_get_block_hash(block: nl.Block):

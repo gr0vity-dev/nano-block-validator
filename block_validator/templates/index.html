@@ -60,6 +60,20 @@
           </thead>
           <tbody>
             <tr>
+              <td><b>Beta</b> (Epoch1)</td>
+              <td>
+                {{ '✅Valid' if results['is_pow_valid_beta_epoch1'] else
+                '❌Invalid' }}
+              </td>
+              <td>
+                {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid'
+                }}
+              </td>
+              <td>{{ results['work_value'] }}</td>
+              <td>{{ results['work_threshold_beta_epoch1'] }}</td>
+              <td>{{ results['multiplier_beta_epoch1'] }}</td>              
+            </tr>
+            <tr>
               <td><b>Beta</b> (Send/Change)</td>
               <td>
                 {{ '✅Valid' if results['is_pow_valid_beta_base'] else
@@ -71,8 +85,7 @@
               </td>
               <td>{{ results['work_value'] }}</td>
               <td>{{ results['work_threshold_beta_base'] }}</td>
-              <td>{{ results['multiplier_beta_base'] }}</td>
-              <td></td>
+              <td>{{ results['multiplier_beta_base'] }}</td>              
             </tr>
             <tr>
               <td><b>Beta</b> (Open/Receive)</td>
@@ -86,8 +99,31 @@
               </td>
               <td>{{ results['work_value'] }}</td>
               <td>{{ results['work_threshold_beta_receive'] }}</td>
-              <td>{{ results['multiplier_beta_receive'] }}</td>
+              <td>{{ results['multiplier_beta_receive'] }}</td>              
+            </tr>
+
+            <tr>
               <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>                          
+            </tr>
+
+            <tr>
+              <td><b>Live</b> (Epoch1)</td>
+              <td>
+                {{ '✅Valid' if results['is_pow_valid_live_epoch1'] else
+                '❌Invalid' }}
+              </td>
+              <td>
+                {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid'
+                }}
+              </td>
+              <td>{{ results['work_value'] }}</td>
+              <td>{{ results['work_threshold_live_epoch1'] }}</td>
+              <td>{{ results['multiplier_live_epoch1'] }}</td>
             </tr>
             <tr>
               <td><b>Live</b> (Send/Change)</td>

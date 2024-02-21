@@ -66,16 +66,28 @@ def analyze_block(block_text):
         'block_hash': nl_get_block_hash(block),
         'is_pow_valid_live_base': live_validation["is_work_valid_base"],
         'is_pow_valid_live_receive': live_validation["is_work_valid_receive"],
+        'is_pow_valid_live_epoch1': live_validation["is_work_valid_epoch1"],
+
         'is_pow_valid_beta_base': beta_validation["is_work_valid_base"],
         'is_pow_valid_beta_receive': beta_validation["is_work_valid_receive"],
+        'is_pow_valid_beta_epoch1': beta_validation["is_work_valid_epoch1"],
+
         'is_signature_valid': live_validation["is_signature_valid"],
         'work_value': live_validation["difficulty"],
+
         'work_threshold_beta_base': beta_validation["base_difficulty"],
         'work_threshold_beta_receive': beta_validation["receive_difficulty"],
+        'work_threshold_beta_epoch1': beta_validation["epoch1_difficulty"],
+
         'work_threshold_live_base': live_validation["base_difficulty"],
         'work_threshold_live_receive': live_validation["receive_difficulty"],
+        'work_threshold_live_epoch1': live_validation["epoch1_difficulty"],
+
         'multiplier_beta_base': "{:.2f}".format(beta_validation["base_multiplier"]),
         'multiplier_beta_receive': "{:.2f}".format(beta_validation["receive_multiplier"]),
+        'multiplier_beta_epoch1': "{:.2f}".format(beta_validation["epoch1_multiplier"]),
+
         'multiplier_live_base': "{:.2f}".format(live_validation["base_multiplier"]),
-        'multiplier_live_receive': "{:.2f}".format(live_validation["receive_multiplier"])
+        'multiplier_live_receive': "{:.2f}".format(live_validation["receive_multiplier"]),
+        'multiplier_live_epoch1': "{:.2f}".format(live_validation["epoch1_multiplier"])
     }
