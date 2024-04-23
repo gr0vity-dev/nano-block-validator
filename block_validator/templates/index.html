@@ -62,12 +62,12 @@
             <tr>
               <td><b>Beta</b> (Epoch1)</td>
               <td>
-                {{ '✅Valid' if results['is_pow_valid_beta_epoch1'] else
-                '❌Invalid' }}
+                {% if results['is_pow_valid_beta_epoch1'] is not none %}
+                    {{ '✅Valid' if results['is_pow_valid_beta_epoch1'] else '❌Invalid' }}
+                {% endif %}
               </td>
-              <td>
-                {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid'
-                }}
+              <td>                
+                {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid' }}
               </td>
               <td>{{ results['work_value'] }}</td>
               <td>{{ results['work_threshold_beta_epoch1'] }}</td>
@@ -76,12 +76,12 @@
             <tr>
               <td><b>Beta</b> (Send/Change)</td>
               <td>
-                {{ '✅Valid' if results['is_pow_valid_beta_base'] else
-                '❌Invalid' }}
+                {% if results['is_pow_valid_beta_base'] is not none %}
+                  {{ '✅Valid' if results['is_pow_valid_beta_base'] else '❌Invalid' }}
+                {% endif %}
               </td>
-              <td>
-                {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid'
-                }}
+              <td>                
+                  {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid' }}
               </td>
               <td>{{ results['work_value'] }}</td>
               <td>{{ results['work_threshold_beta_base'] }}</td>
@@ -90,12 +90,12 @@
             <tr>
               <td><b>Beta</b> (Open/Receive)</td>
               <td>
-                {{ '✅Valid' if results['is_pow_valid_beta_receive'] else
-                '❌Invalid' }}
+                {% if results['is_pow_valid_beta_receive'] is not none %}
+                  {{ '✅Valid' if results['is_pow_valid_beta_receive'] else '❌Invalid' }}
+                {% endif %}
               </td>
               <td>
-                {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid'
-                }}
+                  {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid' }}
               </td>
               <td>{{ results['work_value'] }}</td>
               <td>{{ results['work_threshold_beta_receive'] }}</td>
@@ -114,12 +114,12 @@
             <tr>
               <td><b>Live</b> (Epoch1)</td>
               <td>
-                {{ '✅Valid' if results['is_pow_valid_live_epoch1'] else
-                '❌Invalid' }}
+                {% if results['is_pow_valid_live_epoch1'] is not none %}
+                  {{ '✅Valid' if results['is_pow_valid_live_epoch1'] else '❌Invalid' }}
+                {% endif %}
               </td>
               <td>
-                {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid'
-                }}
+                  {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid' }}
               </td>
               <td>{{ results['work_value'] }}</td>
               <td>{{ results['work_threshold_live_epoch1'] }}</td>
@@ -128,12 +128,12 @@
             <tr>
               <td><b>Live</b> (Send/Change)</td>
               <td>
-                {{ '✅Valid' if results['is_pow_valid_live_base'] else
-                '❌Invalid' }}
+                {% if results['is_pow_valid_live_base'] is not none %}
+                  {{ '✅Valid' if results['is_pow_valid_live_base'] else '❌Invalid' }}
+                {% endif %}
               </td>
               <td>
-                {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid'
-                }}
+                  {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid' }}
               </td>
               <td>{{ results['work_value'] }}</td>
               <td>{{ results['work_threshold_live_base'] }}</td>
@@ -142,12 +142,12 @@
             <tr>
               <td><b>Live</b> (Open/Receive)</td>
               <td>
-                {{ '✅Valid' if results['is_pow_valid_live_receive'] else
-                '❌Invalid' }}
+                {% if results['is_pow_valid_live_receive'] is not none %}
+                  {{ '✅Valid' if results['is_pow_valid_live_receive'] else '❌Invalid' }}
+                {% endif %}
               </td>
               <td>
-                {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid'
-                }}
+                  {{ '✅Valid' if results['is_signature_valid'] else '❌Invalid' }}
               </td>
               <td>{{ results['work_value'] }}</td>
               <td>{{ results['work_threshold_live_receive'] }}</td>

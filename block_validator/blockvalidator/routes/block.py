@@ -1,5 +1,5 @@
 from quart import Blueprint, render_template, request
-from blockvalidator.deps.nanolib_helpers import BetaBlockValidator, LiveBlockValidator, nl_block_from_json, nl_get_block_hash
+from blockvalidator.deps.nanolib_helpers import BetaBlockValidator, LiveBlockValidator
 import json
 
 block_bp = Blueprint('block', __name__)
@@ -54,16 +54,14 @@ def get_default_blocks():
 
 def analyze_block(block_text):
 
-    block = nl_block_from_json(block_text)
-
-    beta = BetaBlockValidator(block)
-    live = LiveBlockValidator(block)
+    beta = BetaBlockValidator(block_text)
+    live = LiveBlockValidator(block_text)
 
     beta_validation = beta.validate()
     live_validation = live.validate()
 
-    return {
-        'block_hash': nl_get_block_hash(block),
+    result = {
+        'block_hash': live.get_block_hash(),
         'is_pow_valid_live_base': live_validation["is_work_valid_base"],
         'is_pow_valid_live_receive': live_validation["is_work_valid_receive"],
         'is_pow_valid_live_epoch1': live_validation["is_work_valid_epoch1"],
@@ -91,3 +89,4 @@ def analyze_block(block_text):
         'multiplier_live_receive': "{:.2f}".format(live_validation["receive_multiplier"]),
         'multiplier_live_epoch1': "{:.2f}".format(live_validation["epoch1_multiplier"])
     }
+    return result
